@@ -76,13 +76,16 @@ export const scrollHandle = () => {
   setDiffY(scrollAction.y - window.scrollY)
 
   // 控制滑动时导航栏显示
-  if (diffY < 0) {
-    siteNav.classList.remove('up')
-    siteNav.classList.toggle('down', SHOW)
-  } else if (diffY > 0) {
-    siteNav.classList.remove('down')
-    siteNav.classList.toggle('up', SHOW)
-  } else { /* empty */ }
+  const isNearBottom = window.scrollY + winHeight >= document.body.scrollHeight - 60
+  if (!isNearBottom) {
+    if (diffY < 0) {
+      siteNav.classList.remove('up')
+      siteNav.classList.toggle('down', SHOW)
+    } else if (diffY > 0) {
+      siteNav.classList.remove('down')
+      siteNav.classList.toggle('up', SHOW)
+    } else { /* empty */ }
+  }
   scrollAction.y = window.scrollY
   // 计算滚动百分比
   const scrollPercent = Math.round(Math.min(100 * window.scrollY / contentVisibilityHeight, 100)) + '%'
