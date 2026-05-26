@@ -11,6 +11,16 @@ doctype html
 html(lang=page.language?page.language:config.language, style=theme.grayMode ? 'filter: grayscale(1);':'' )
     head
         != partial('_partials/head/head.pug', {}, {cache: true})
+        style.
+          @font-face {
+            font-family: 'ic';
+            src: url('/assets/fonts/font_4415496_59g1326wajd.eot');
+            src: url('/assets/fonts/font_4415496_59g1326wajd.eot?#iefix') format('embedded-opentype'),
+                 url('/assets/fonts/font_4415496_59g1326wajd.woff2') format('woff2'),
+                 url('/assets/fonts/font_4415496_59g1326wajd.woff') format('woff'),
+                 url('/assets/fonts/font_4415496_59g1326wajd.ttf') format('truetype'),
+                 url('/assets/fonts/font_4415496_59g1326wajd.svg#ic') format('svg');
+          }
         if enablePreload && enableCover
             if enableFixedCover
                 link(rel="preload" href=theme.homeConfig.fixedCover as="image" fetchpriority="high")
