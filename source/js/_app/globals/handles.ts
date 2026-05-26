@@ -46,10 +46,8 @@ export const resizeHandle = () => {
 export const scrollHandle = () => {
   // 获取窗口高度
   const winHeight = window.innerHeight
-  // 获取文档高度
-  const docHeight = (document.querySelector('main > .inner') as HTMLElement).offsetHeight
-  // 计算可见内容高度
-  const contentVisibilityHeight = docHeight > winHeight ? docHeight - winHeight : document.body.scrollHeight - winHeight
+  // 计算可见内容高度（直接使用 body scrollHeight，避免 main > .inner 的 offsetHeight 在动画/懒加载时不稳定）
+  const contentVisibilityHeight = document.body.scrollHeight - winHeight
   // 判断页面是否滚动超过 headerHightInner
   const SHOW = window.scrollY > headerHightInner
   // 判断页面是否开始滚动
